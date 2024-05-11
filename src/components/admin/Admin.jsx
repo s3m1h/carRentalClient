@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+
+import BallGame from "./Game";
 
 const Admin = () => {
-  return (
-    <section className="container mt-5">
-      <h2>Admin paneline hoşgeldiniz.</h2>
-      <img className="gif" src="car-driving.gif" alt="car" />
 
+  const [gameStarted, setGameStarted] = useState(false);
+
+  const startGame = () => {
+    setGameStarted(true);
+  };
+
+  return (
+    <section className=" rounded">
+      <h2 className="text-black text-center ">Yönetim Panelimize Hoş Geldiniz!</h2>
       <hr />
-      <a href="/">Web sitesine dön</a>
+      {!gameStarted ? (
+        <div>
+          <p>Biraz eğlenceye ne dersiniz? </p>
+          <p> 1- Oyunu başlatmak için "Oyunu Başlat" butonuna tıklayınız</p>
+          <p> 2- Eğer ekran boş görünüyorsa ekrana bir kez tıklayınız..</p>
+          <button className="btn btn-success" onClick={startGame}>Oyunu Başlat</button>
+        </div>
+      ) : (
+        <>
+         <BallGame />
+        </>
+       
+      )}
       
     </section>
   );

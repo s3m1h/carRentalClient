@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import Urls from "~/constants/Urls";
 import { addColor } from "~/services/ColorService";
 
@@ -42,14 +43,12 @@ const AddColor = () => {
             <h2 className="mt-5 mb-2">Yeni bir renk ekle</h2>
             {successMessage && (
               <div className="alert alert-success fade show">
-                {" "}
                 {successMessage}
               </div>
             )}
 
             {errorMessage && (
               <div className="alert alert-danger fade show">
-                {" "}
                 {errorMessage}
               </div>
             )}
@@ -70,7 +69,7 @@ const AddColor = () => {
                 />
                 <div className="form-text">Bir renk giriniz...</div>
               </div>
-              <Link to={Urls.ADMIN + Urls.COLORS} className="btn btn-outline-info ml-5">
+              <Link to={"/admin/colors"} className="btn btn-outline-info ml-5">
                 Geri dön
               </Link>
               <button type="submit" className="btn btn-outline-primary ml-5">

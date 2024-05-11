@@ -17,7 +17,16 @@ const Header = () => {
   return (
     <>
       {!location.pathname.includes("admin") && (
+        <>
+        {isLoggedIn && userRole === "ROLE_ADMIN" && (
+          <a href="/admin">
+            <button className="w-100 rounded-0 fw-bold btn btn-danger">Yönetim Kontrol Merkezi</button>
+            </a>
+        )}
+        
         <nav className="navbar navbar-expand-lg bg-dark px-5 shadow  sticky-top">
+
+          
           <div className="container ">
             <a href="/" className="navbar-brand">
               <img src="logo2.png" alt="logo" height={"36"} />
@@ -46,22 +55,14 @@ const Header = () => {
                     Hakkımızda
                   </NavLink>
                 </li>
-
-                {isLoggedIn && userRole === "ROLE_ADMIN" && (
-                  <li className="nav-item">
-                    <NavLink className="nav-link text-light" aria-current="page" to={"/admin"}>
-                      Admin
-                    </NavLink>
-                  </li>
-                )}
               </ul>
 
               <ul className="d-flex navbar-nav">
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <NavLink className="nav-link text-light" to={"/find-booking"}>
                     Find my booking
                   </NavLink>
-                </li>
+                </li> */}
 
 
                 <li className="nav-item dropdown">
@@ -93,6 +94,7 @@ const Header = () => {
             </div>
           </div>
         </nav>
+        </>
       )}
     </>
   );

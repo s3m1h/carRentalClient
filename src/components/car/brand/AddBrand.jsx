@@ -70,7 +70,7 @@ const AddBrand = () => {
                 />
                 <div className="form-text">Bir araba markası giriniz...</div>
               </div>
-              <Link to={Urls.BRANDS} className="btn btn-outline-info ml-5">
+              <Link to={"/admin/brands"} className="btn btn-outline-info ml-5">
                 Geri dön
               </Link>
               <button type="submit" className="btn btn-outline-primary ml-5">

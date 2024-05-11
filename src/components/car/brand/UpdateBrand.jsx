@@ -61,14 +61,12 @@ const UpdateBrand = () => {
             <h2 className="mt-5 mb-2">Markayı düzenle</h2>
             {successMessage && (
               <div className="alert alert-success fade show">
-                {" "}
                 {successMessage}
               </div>
             )}
 
             {errorMessage && (
               <div className="alert alert-danger fade show">
-                {" "}
                 {errorMessage}
               </div>
             )}
@@ -89,7 +87,7 @@ const UpdateBrand = () => {
                 />
                 <div className="form-text">Bir araba markası giriniz...</div>
               </div>
-              <Link to={Urls.ADMIN + Urls.BRANDS} className="btn btn-outline-info ml-5">
+              <Link to={"/admin/brands"} className="btn btn-outline-info ml-5">
                 Geri dön
               </Link>
               <button type="submit" className="btn btn-outline-primary ml-5">

@@ -46,14 +46,14 @@ function App() {
             <Route path={"rental-add"} element={<RentalCarForm />} />
 
               {/* Ekleme urlleri */}
-            <Route path={"add-car"} element={<AddCar />} />
-            <Route path={"add-brand"} element={<AddBrand />} />
-            <Route path={"add-color"} element={<AddColor />} />
+            <Route path={"cars/add-car"} element={<AddCar />} />
+            <Route path={"brands/add-brand"} element={<AddBrand />} />
+            <Route path={"colors/add-color"} element={<AddColor />} />
 
              {/* Güncelleme urlleri */}
-            <Route path={":brandId"} element={<UpdateBrand />}/>
-            <Route path={":colorId"} element={<UpdateColor />}/>
-            <Route path={"cars/:carId"} element={<UpdateCar />} />
+            <Route path={"brands/update/:brandId"} element={<UpdateBrand />}/>
+            <Route path={"colors/update/:colorId"} element={<UpdateColor />}/>
+            <Route path={"cars/update/:carId"} element={<UpdateCar />} />
           </Route>
 
           <Route path={Urls.HOME} element={<Home />} />

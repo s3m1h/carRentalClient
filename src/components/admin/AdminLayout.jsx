@@ -10,8 +10,7 @@ const AdminLayout = () => {
                 <Row className="justify-content-md-center">
                     <Col xs={15} md={10} >
                         <AdminHeader />
-
-                        <div className="bg-white mt-2 mb-4 p-4 border border-1 rounded">
+                        <div className="bg-white mt-2 mb-4 p-4 rounded">
                             <Outlet />
                         </div>
                     </Col>

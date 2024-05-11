@@ -88,7 +88,7 @@ const ListCar = () => {
               </Col>
 
               <Col md={6} className="d-flex justify-content-end">
-                <Link to={Urls.ADMIN + Urls.ADDCAR}>
+                <Link to={"add-car"}>
                   <FaPlus /> Araba Ekle
                 </Link>
               </Col>
@@ -117,7 +117,7 @@ const ListCar = () => {
                 {cars.map((car) => (
                   <tr key={car.carId} className="text-center">
                     <td>{car.carId}</td>
-                    <td><img src={`data:image/png;base64, ${car.photo}`} alt="Car image" style={{ width: "100%", maxWidth: "50px", height: "auto" }} /></td>
+                    <td><img className="carImage" src={`data:image/png;base64, ${car.photo}`} alt="Car image" style={{ width: "100%", maxWidth: "50px", height: "auto" }} /></td>
                     <td>{car.carName}</td>
                     <td>{car.brandName}</td>
                     <td>{car.colorName}</td>

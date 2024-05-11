@@ -75,7 +75,7 @@ const ListBrand = () => {
               </Col>
 
               <Col md={6} className="d-flex justify-content-end">
-                <Link to={Urls.ADMIN + Urls.ADDBRAND}>
+                <Link to={"add-brand"}>
                   <FaPlus /> Add Brand
                 </Link>
               </Col>
@@ -96,7 +96,7 @@ const ListBrand = () => {
                     <td>{brand.id}</td>
                     <td>{brand.brandName}</td>
                     <td className="gap-2">
-                      <Link to={`${Urls.ADMIN + Urls.UPDATEBRAND}/${brand.id}`} className="gap-2">
+                      <Link to={`update/${brand.id}`} className="gap-2">
                         <span className="btn btn-info btn-sm">
                           <FaEye />
                         </span>

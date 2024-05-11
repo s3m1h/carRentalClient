@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import { FaEdit, FaEye, FaPlus, FaTrashAlt } from "react-icons/fa";
+import { FaEdit, FaEye, FaPalette, FaPlus, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Loading from "~/components/common/Loading";
 import Urls from "~/constants/Urls";
@@ -76,7 +76,7 @@ const ListColor = () => {
               </Col>
 
               <Col md={6} className="d-flex justify-content-end">
-                <Link to={Urls.ADMIN + Urls.ADDCOLOR}>
+                <Link to={"add-color"}>
                   <FaPlus /> Renk Ekle
                 </Link>
               </Col>
@@ -87,6 +87,7 @@ const ListColor = () => {
                 <tr className="text-center">
                   <th>ID</th>
                   <th>Renk Adı</th>
+                  <th>Renk</th>
                   <th>Ayarlar</th>
                 </tr>
               </thead>
@@ -96,8 +97,9 @@ const ListColor = () => {
                   <tr key={color.id} className="text-center">
                     <td>{color.id}</td>
                     <td>{color.colorName}</td>
+                    <td> <FaPalette style={{color:`${color.colorName.toLowerCase()}`}}/></td>
                     <td className="gap-2">
-                      <Link to={`${Urls.ADMIN + Urls.UPDATECOLOR}/${color.id}`} className="gap-2">
+                      <Link to={`update/${color.id}`} className="gap-2">
                         <span className="btn btn-info btn-sm">
                           <FaEye />
                         </span>

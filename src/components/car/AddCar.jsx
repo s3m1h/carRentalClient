@@ -304,7 +304,7 @@ const AddCar = () => {
                 )}
               </div>
               <div className="d-grid gap-2 d-md-flex mt-2">
-                <Link to={Urls.ADMIN + Urls.CARS} className="btn btn-outline-info">
+                <Link to={"/admin/cars"} className="btn btn-outline-info">
                   Geri Dön
                 </Link>
                 <button type="submit" className="btn btn-outline-primary ml-5">
