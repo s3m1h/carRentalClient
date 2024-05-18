@@ -13,13 +13,16 @@ const Profile = () => {
 		roles: [{ id: "", name: "" }]
 	})
 
-	const [bookings, setBookings] = useState([
+	const [rentals, setRentals] = useState([
 		{
 			id: "",
-			room: { id: "", roomType: "" },
-			checkInDate: "",
-			checkOutDate: "",
-			bookingConfirmationCode: ""
+			brandName: "",
+			modelName: "",
+			colorName: "",
+			carBodyType: "",
+			startDate: "",
+			finishDate: "",
+			rentalConfirmationCode: ""
 		}
 	])
 	const [message, setMessage] = useState("")
@@ -46,7 +49,7 @@ const Profile = () => {
 		const fetchBookings = async () => {
 			try {
 				const response = await getRentalsByUserId(userId, token)
-				setBookings(response)
+				setRentals(response)
 			} catch (error) {
 				console.error("Error fetching bookings:", error.message)
 				setErrorMessage(error.message)
@@ -58,7 +61,7 @@ const Profile = () => {
 
 	const handleDeleteAccount = async () => {
 		const confirmed = window.confirm(
-			"Are you sure you want to delete your account? This action cannot be undone."
+			"Hesabınızı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz."
 		)
 		if (confirmed) {
 			await deleteUser(userId)
@@ -77,12 +80,12 @@ const Profile = () => {
 	}
 
 	return (
-		<div className="container">
-			{errorMessage && <p className="text-danger">{errorMessage}</p>}
+		<div className="">
+			{errorMessage && <div className="alert alert-danger" role="alert">{errorMessage}</div>}
 			{message && <p className="text-danger">{message}</p>}
 			{user ? (
-				<div className="card p-5 mt-5" style={{ backgroundColor: "whitesmoke" }}>
-					<h4 className="card-title text-center">User Information</h4>
+				<div className="card p-5" style={{ backgroundColor: "whitesmoke" }}>
+					<h4 className="card-title text-center">Kullanıcı Bilgileri</h4>
 					<div className="card-body">
 						<div className="col-md-10 mx-auto">
 							<div className="card mb-3 shadow">
@@ -100,13 +103,6 @@ const Profile = () => {
 
 									<div className="col-md-10">
 										<div className="card-body">
-											<div className="form-group row">
-												<label className="col-md-2 col-form-label fw-bold">ID:</label>
-												<div className="col-md-10">
-													<p className="card-text">{user.id}</p>
-												</div>
-											</div>
-											<hr />
 
 											<div className="form-group row">
 												<label className="col-md-2 col-form-label fw-bold">First Name:</label>
@@ -149,49 +145,54 @@ const Profile = () => {
 								</div>
 							</div>
 
-							<h4 className="card-title text-center">Booking History</h4>
+							<h4 className="card-title text-center">Kiralama Geçmişi</h4>
 
-							{bookings.length > 0 ? (
-								<table className="table table-bordered table-hover shadow">
+							{rentals.length > 0 ? (
+								<div className="table-responsive rounded">
+								<table className="table table-bordered  rounded table-hover table-striped">
 									<thead>
 										<tr>
-											<th scope="col">Booking ID</th>
-											<th scope="col">Room ID</th>
-											<th scope="col">Room Type</th>
-											<th scope="col">Check In Date</th>
-											<th scope="col">Check Out Date</th>
-											<th scope="col">Confirmation Code</th>
-											<th scope="col">Status</th>
+											<th scope="col">Rental ID</th>
+											<th scope="col">Marka</th>
+											<th scope="col">Model</th>
+											<th scope="col">Kasa tipi</th>
+											<th scope="col">Başlangıç</th>
+											<th scope="col">Bitiş</th>
+											<th scope="col">Kiralama kodu</th>
+											<th scope="col">Durum</th>
 										</tr>
 									</thead>
 									<tbody>
-										{bookings.map((booking, index) => (
+										{rentals.map((rental, index) => (
 											<tr key={index}>
-												<td>{booking.id}</td>
-												<td>{booking.room.id}</td>
-												<td>{booking.room.roomType}</td>
+												<td>{rental.id}</td>
+												<td>{rental.brandName}</td>
+												<td>{rental.colorName}</td>
+												<td>{rental.carBodyType}</td>
 												<td>
-													{moment(booking.checkInDate).subtract(1, "month").format("MMM Do, YYYY")}
+													{moment(rental.startDate).subtract(1, "month").format("MMM Do, YYYY")}
 												</td>
 												<td>
-													{moment(booking.checkOutDate)
+													{moment(rental.finishDate)
 														.subtract(1, "month")
 														.format("MMM Do, YYYY")}
 												</td>
-												<td>{booking.bookingConfirmationCode}</td>
+												<td>{rental.rentalConfirmationCode}</td>
 												<td className="text-success">On-going</td>
 											</tr>
 										))}
 									</tbody>
 								</table>
+								</div>
 							) : (
-								<p>You have not made any bookings yet.</p>
+								<div className="alert alert-warning" role="alert">Henüz rezervasyon yapmadınız.</div>
+
 							)}
 
 							<div className="d-flex justify-content-center">
 								<div className="mx-2">
 									<button className="btn btn-danger btn-sm" onClick={handleDeleteAccount}>
-										Close account
+										Hesabımı Sil
 									</button>
 								</div>
 							</div>

@@ -5,7 +5,7 @@ export const api = axios.create({
   baseURL: UrlStrings.BASEURL,
 });
 
-export const getHeaders = () => {
+export const getHeaderWithMultiFormData = () => {
   const token = localStorage.getItem("token")
   return { 
     Authorization: `Bearer ${token}`,
@@ -14,7 +14,7 @@ export const getHeaders = () => {
 };
 
 
-export const getHeaderAuth = () => {
+export const getHeaderWithAppJson = () => {
 	const token = localStorage.getItem("token")
 	return {
 		Authorization: `Bearer ${token}`,

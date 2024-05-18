@@ -34,7 +34,7 @@ const ListBrand = () => {
   const handleDelete = async (brandId) => {
 		try {
 			const result = await deleteBrand(brandId);
-			if (result === "") {
+			if (!result) {
 				setSuccessMessage(`id: ${brandId} olan marka silindi.`)
 				fetchBrands()
 			} else {

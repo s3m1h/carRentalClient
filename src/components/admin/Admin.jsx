@@ -19,13 +19,12 @@ const Admin = () => {
           <p>Biraz eğlenceye ne dersiniz? </p>
           <p> 1- Oyunu başlatmak için "Oyunu Başlat" butonuna tıklayınız</p>
           <p> 2- Eğer ekran boş görünüyorsa ekrana bir kez tıklayınız..</p>
-          <button className="btn btn-success" onClick={startGame}>Oyunu Başlat</button>
+          <button className="btn btn-success custom-button" onClick={startGame}>Oyunu Başlat</button>
         </div>
       ) : (
         <>
          <BallGame />
         </>
-       
       )}
       
     </section>

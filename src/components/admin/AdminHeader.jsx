@@ -1,39 +1,46 @@
-import { useState } from "react";
-import { Accordion, Col, Container, Nav, Row, Tab, Tabs } from "react-bootstrap";
-import { FaBackward, FaBootstrap, FaGlobe, FaHome, FaSpaceShuttle } from "react-icons/fa";
-import Urls from "~/constants/Urls";
-import ListCar from "../car/ListCar";
 
+import { Button, Container, Nav, Navbar} from "react-bootstrap";
+import {  FaCar, FaClipboardList, FaGlobe, FaHome, FaPaintBrush, FaSignOutAlt, FaTags, FaUser  } from "react-icons/fa";
+import { AuthContext, useAuth } from "../auth/AuthProvider";
+import { useContext } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 const AdminHeader = () => {
+  const { user } = useAuth();
+  const auth = useContext(AuthContext)
+  const navigate = useNavigate();
 
-
+  const handleLogout = () => {
+		auth.handleLogout()
+    setTimeout(()=>{
+      navigate("/");
+    },3000);
+    
+	}
   return (
     <>
-      <Nav className="bg-body-secondary rounded" variant="tabs" >
+       <Navbar bg="dark" variant="dark" expand="lg" className="mb-4">
+        <Navbar.Brand href="/admin">
+          <img style={{height:"50px"}} src="/admin.png" alt="admin" /> 
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
 
-        <Nav.Item>
-          <Nav.Link href="/admin" className="text-dark"><FaHome/></Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey="cars" href={"/admin/cars"} className="text-dark">Cars</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey="brands" href={"/admin/brands"} className="text-dark">Brands</Nav.Link>
-        </Nav.Item>
-
-        <Nav.Item>
-          <Nav.Link eventKey="colors" href={"/admin/colors"} className="text-dark">Colors</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey="users" href="" className="text-dark">Users</Nav.Link>
-        </Nav.Item>
-        <Nav.Item >
-          <Nav.Link eventKey="home" href="/"><FaGlobe/> Web siteye geri dön</Nav.Link>
-        </Nav.Item>
-        
-        
-
-      </Nav>
+            <Nav.Link href="/admin/rentals" className="text-light"><FaClipboardList /> Rentals</Nav.Link>
+            <Nav.Link href="/admin/cars" className="text-light"><FaCar /> Cars</Nav.Link>
+            <Nav.Link href="/admin/brands" className="text-light"><FaTags /> Brands</Nav.Link>
+            <Nav.Link href="/admin/colors" className="text-light"><FaPaintBrush /> Colors</Nav.Link>
+            <Nav.Link href="/admin/users" className="text-light"><FaUser /> Users</Nav.Link>
+          </Nav>
+          <Nav className="ms-auto">
+            <Nav.Link href="/" className="text-light"><FaGlobe /> </Nav.Link>
+          </Nav>
+          <Nav >
+            <Nav.Link href="#" className="text-light">{user.sub}</Nav.Link>
+          </Nav>
+          <Button className="logout-button custom-button" onClick={()=>{handleLogout()}}> Çıkış  <FaSignOutAlt/></Button>
+        </Navbar.Collapse>
+    </Navbar>
 
     </>
   );

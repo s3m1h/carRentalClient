@@ -1,11 +1,11 @@
-import { api, getHeaderAuth, getHeaders } from "./AxiosServiceBase";
+import { api, getHeaderWithMultiFormData } from "./AxiosServiceBase";
 
 
 export async function addCar(carData,photo){
     const formData = new FormData();
     formData.append("carRequest", new Blob([JSON.stringify(carData)],{type:"application/json"}));
     formData.append("files", photo);
-    const response = await api.post("/api/cars", formData,{headers:getHeaders()} );
+    const response = await api.post("/api/cars", formData,{headers:getHeaderWithMultiFormData()} );
       if (response.status === 201) {
         return true;
       } else {
@@ -25,7 +25,7 @@ export async function updateCar(carId,carData,photo){
   formData.append("carRequest", new Blob([JSON.stringify(carData)],{type:"application/json"}));
   formData.append("files", photo);
   const response = await api.put(`/api/cars/${carId}`, formData, {
-    headers: getHeaders(),
+    headers: getHeaderWithMultiFormData(),
   });
   return response;
 }

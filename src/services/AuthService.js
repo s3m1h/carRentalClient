@@ -1,4 +1,4 @@
-import { api, getHeaderAuth } from "./AxiosServiceBase";
+import { api, getHeaderWithAppJson } from "./AxiosServiceBase";
 
 
 
@@ -31,7 +31,7 @@ export async function loginUser(data) {
 export async function getUserProfile(userId, token) {
 	try {
 		const response = await api.get(`/api/users/profile/${userId}`, {
-			headers: getHeaderAuth()
+			headers: getHeaderWithAppJson()
 		})
 		return response.data
 	} catch (error) {
@@ -41,7 +41,7 @@ export async function getUserProfile(userId, token) {
 export async function deleteUser(userId) {
 	try {
 		const response = await api.delete(`/api/users/${userId}`, {
-			headers: getHeaderAuth()
+			headers: getHeaderWithAppJson()
 		})
 		return response.data
 	} catch (error) {
@@ -51,7 +51,7 @@ export async function deleteUser(userId) {
 export async function getUser(userId, token) {
 	try {
 		const response = await api.get(`/api/users/${userId}`, {
-			headers: getHeaderAuth()
+			headers: getHeaderWithAppJson()
 		})
 		return response.data
 	} catch (error) {
@@ -61,12 +61,12 @@ export async function getUser(userId, token) {
 
 export async function getRentalsByUserId(userId, token) {
 	try {
-		const response = await api.get(`/api/rentals/user/${userId}/bookings`, {
+		const response = await api.get(`/api/rentals/user/${userId}`, {
 			headers: getHeaderAuth()
 		})
 		return response.data
 	} catch (error) {
-		console.error("Error fetching bookings:", error.message)
-		throw new Error("Failed to fetch bookings")
+		console.error("Kiralama bilgileri getirilirken bir sorunla karşılaşıldı:", error.message)
+		throw new Error("Kiralama bilgileri getirilirken bir sorunla karşılaşıldı.")
 	}
 }

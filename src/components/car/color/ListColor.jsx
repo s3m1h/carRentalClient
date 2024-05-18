@@ -34,25 +34,25 @@ const ListColor = () => {
 
   const handleDelete = async (colorId) => {
 		try {
-			const result = await deleteColor(colorId);
-			if (result === "") {
-				setSuccessMessage(`id: ${colorId} olan renk silindi.`)
-				fetchColors()
-			} else {
-				console.error(`Renk silme başarısız. : ${result.message}`)
-			}
-		} catch (error) {
-			setErrorMessage(error.message)
-		}
-		setTimeout(() => {
-			setSuccessMessage("")
-			setErrorMessage("")
-		}, 3000)
+      const result = await deleteColor(colorId);
+      if (!result) {
+        setSuccessMessage(`id: ${colorId} olan renk silindi.`);
+        fetchColors();
+      } else {
+        console.error(`Renk silme başarısız. : ${result.message}`);
+      }
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
+    setTimeout(() => {
+      setSuccessMessage("");
+      setErrorMessage("");
+    }, 3000);
 	}
   return (
     <>
       <div className="container col-md-8 col-lg-6">
-        {successMessage && (
+        { successMessage && (
           <p className="alert alert-success mt-5">{successMessage}</p>
         )}
 
@@ -97,7 +97,7 @@ const ListColor = () => {
                   <tr key={color.id} className="text-center">
                     <td>{color.id}</td>
                     <td>{color.colorName}</td>
-                    <td> <FaPalette style={{color:`${color.colorName.toLowerCase()}`}}/></td>
+                    <td> <FaPalette style={{color:`${color.colorHex}`, fontSize:"25px"}}/></td>
                     <td className="gap-2">
                       <Link to={`update/${color.id}`} className="gap-2">
                         <span className="btn btn-info btn-sm">

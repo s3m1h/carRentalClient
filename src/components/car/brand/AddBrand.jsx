@@ -74,7 +74,7 @@ const AddBrand = () => {
                 Geri dön
               </Link>
               <button type="submit" className="btn btn-outline-primary ml-5">
-                Save Brand
+                Kaydet
               </button>
             </form>
           </div>

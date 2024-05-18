@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 
 const BallGame = () => {
   const canvasRef = useRef(null);
-  const [ballPosition, setBallPosition] = useState({ x: 100, y: 100 });
+  const [ballPosition, setBallPosition] = useState({ x: 300, y: 300 });
   const [velocity, setVelocity] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const gravity = 0.5;
@@ -18,6 +18,7 @@ const BallGame = () => {
   const walls = useRef([]);
   const [imageLoaded, setImageLoaded] = useState(false);
   const ballImgRef = useRef(null); // Top resmi referansı
+  const [score, setScore] = useState(0);
 
   const [angle, setAngle] = useState(0);
   useEffect(() => {
@@ -115,6 +116,9 @@ const BallGame = () => {
         setVelocity(newVelocity);
         setBallPosition(newPosition);
         checkCollision();
+
+        // Her güncelleme adımında bir puan ekleyebilirsiniz
+        setScore(score + 1);
       }
     };
 
@@ -176,8 +180,10 @@ const BallGame = () => {
     return () => cancelAnimationFrame(animationId);
   }, [ballPosition, velocity, gameOver]);
 
+  const audio = new Audio('sound_effect.mp3');
   const handleCanvasClick = () => {
     if (!gameOver) {
+      audio.play();
       setVelocity(jumpVelocity); // Tıkladığınızda top hızlıca yukarı çıkar
       setAngle(angle + Math.PI / 4); // 45 derece dön
     }
@@ -185,8 +191,9 @@ const BallGame = () => {
 
   const handleRestart = () => {
     setGameOver(false);
-    setBallPosition({ x: 100, y: 100 });
+    setBallPosition({ x: 300, y: 300 });
     setVelocity(0);
+    setScore(0); // Puanı sıfırla
     walls.current = [];
     generateWalls();
   };
@@ -195,6 +202,7 @@ const BallGame = () => {
     <div>
       {gameOver && <button className='btn btn-primary' onClick={handleRestart}>Yeniden Başla</button>}
       <br />
+      <div>Puan: {score}</div> {/* Puanı göster */}
       <br />
       <canvas
         ref={canvasRef}

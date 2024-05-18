@@ -1,28 +1,32 @@
 import React, { useContext } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 import { AuthContext } from "./AuthProvider"
-import { FaSignOutAlt } from "react-icons/fa"
+import { FaSignOutAlt, FaUserAlt } from "react-icons/fa"
 
 const Logout = () => {
 	const auth = useContext(AuthContext)
 	const navigate = useNavigate()
 
 	const handleLogout = () => {
-		auth.handleLogout()
-		navigate("/", { state: { message: " You have been logged out!" } })
-	}
+		auth.handleLogout();
+
+		setTimeout(()=>{
+			navigate("/"); // Anasayfaya yönlendir
+		},1000);
+		
+	  };
 
 	return (
 		<>
-			<li>
-				<Link className="dropdown-item" to={"/profile"}>
-					Profil
+			<li className="nav-item ">
+				<Link className="btn btn-success text-light custom-button" to={"/profile"}>
+					<FaUserAlt className="mx-1" /> Profil
 				</Link>
 			</li>
 			<li>
 				<hr className="dropdown-divider" />
 			</li>
-			<button className="dropdown-item" onClick={handleLogout}>
+			<button className="btn btn-danger text-light mx-2 custom-button" onClick={handleLogout}>
 				Çıkış yap <FaSignOutAlt/>
 			</button>
 		</>

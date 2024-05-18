@@ -1,4 +1,4 @@
-import { api, getHeaderAuth } from "./AxiosServiceBase"
+import { api, getHeaderWithAppJson } from "./AxiosServiceBase"
 
 export async function addRental(rentalData){
     try {
@@ -16,7 +16,7 @@ export async function addRental(rentalData){
 export async function getAllRentals() {
 	try {
 		const result = await api.get("/api/rentals", {
-			headers: getHeaderAuth()
+			headers: getHeaderWithAppJson()
 		})
 		return result.data
 	} catch (error) {

@@ -1,11 +1,14 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import { FaFacebook, FaFacebookF, FaFacebookSquare, FaGithub, FaGoogle, FaInstagram, FaLinkedin, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import {  FaFacebookF, FaGithub, FaGoogle, FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
 
 const Footer = () => {
-  let today = new Date();
+
+  const location = useLocation();
+  const hideFooter = location.pathname.includes("admin") || location.pathname.includes("register") || location.pathname.includes("login");
+
   return <>
-    {!location.pathname.includes("admin") && (
+    {!hideFooter && (
 
       <footer className="bg-dark text-center">
         {/* Grid container */}

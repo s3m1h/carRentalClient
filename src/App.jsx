@@ -29,6 +29,9 @@ import AuthProvider from "./components/auth/AuthProvider";
 import PageNotFound404 from "./components/PageNotFound404";
 import RentalCarForm from "./components/rent/RentalCarForm";
 import About from "./components/About";
+import Rentals from "./components/rent/Rentals";
+import ListUser from "./components/car/user/ListUser";
+import UpdateUser from "./components/car/user/UpdateUser";
 
 function App() {
   return (
@@ -43,17 +46,18 @@ function App() {
             <Route path={"cars"} element={<ListCar />} />
             <Route path={"brands"} element={<ListBrand />} />
             <Route path={"colors"} element={<ListColor />} />
-            <Route path={"rental-add"} element={<RentalCarForm />} />
+            <Route path={"rentals"} element={<Rentals />} />
+            <Route path={"users"} element={<ListUser />} />
 
-              {/* Ekleme urlleri */}
+
             <Route path={"cars/add-car"} element={<AddCar />} />
             <Route path={"brands/add-brand"} element={<AddBrand />} />
             <Route path={"colors/add-color"} element={<AddColor />} />
 
-             {/* Güncelleme urlleri */}
             <Route path={"brands/update/:brandId"} element={<UpdateBrand />}/>
             <Route path={"colors/update/:colorId"} element={<UpdateColor />}/>
             <Route path={"cars/update/:carId"} element={<UpdateCar />} />
+            <Route path={"users/update/:userId"} element={<UpdateUser />} />
           </Route>
 
           <Route path={Urls.HOME} element={<Home />} />
@@ -61,6 +65,7 @@ function App() {
 
 
           <Route path={"/about"} element={<About />} />
+          
           <Route path={"/login"} element={<Login />} />
           <Route path={"/register"} element={<Register />} />
           <Route path={"/profile"} element={<Profile />} />

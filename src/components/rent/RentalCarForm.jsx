@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getCarById } from '~/services/CarService';
 
 function RentalCarForm() {
     const [rentalData, setRentalData] = useState({
-        userId: '',
         startDate: '',
         finishDate: '',
         carId: '',
@@ -18,6 +19,21 @@ function RentalCarForm() {
             [name]: value
         });
     };
+    const { carId } = useParams()
+	const navigate = useNavigate()
+
+      const getCarPriceById = async (carId) => {
+		try {
+			const response = await getCarById(carId)
+			setRoomPrice(response.roomPrice)
+		} catch (error) {
+			throw new Error(error)
+		}
+	}
+
+	useEffect(() => {
+		getCarPriceById(carId)
+	}, [carId])
 
     const handleSubmit = (e) => {
         e.preventDefault();

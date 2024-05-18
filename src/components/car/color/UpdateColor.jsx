@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { SketchPicker } from "react-color";
 import { Link, useParams } from "react-router-dom";
 import Urls from "~/constants/Urls";
 import { getColorById, updateColor } from "~/services/ColorService";
 
 
 const UpdateColor = () => {
+  const [colorHex, setColorHex] = useState('#ffffff'); // Varsayılan renk beyaz
+
+  const handleColorChange = (color) => {
+    setColorHex(color.hex);
+  };
+
   const [color, setColor] = useState({
     colorName: "",
   });
@@ -35,7 +42,7 @@ const UpdateColor = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await updateColor(colorId, color);
+      const response = await updateColor(colorId, color,colorHex);
       if (response.status === 200) {
         setSuccessMessage("Marka başarılı bir şekilde Düzenlendi..");
         const updatedColorData = await getColorById(colorId);
@@ -72,6 +79,7 @@ const UpdateColor = () => {
             )}
 
             <form onSubmit={handleSubmit}>
+             <SketchPicker color={colorHex} onChangeComplete={handleColorChange} />
               <div className="mb-3">
                 <label htmlFor="colorName" className="form-label">
                   Renk adı

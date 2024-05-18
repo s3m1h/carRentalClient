@@ -7,7 +7,7 @@ const AdminBase = ({ children }) => {
   const { user } = useAuth();
 
   if (!user || user.roles[0] !== 'ROLE_ADMIN') {
-    return <>Böyle bir sayfa yok</>
+    return <div> Anasayfaya yönlendiriliyorsunuz...Lütfen bekleyiniz.</div>
   }
   return (
     <div>{children}</div>
