@@ -67,26 +67,26 @@ const CarCarousel = () => {
                     <ul className="list-group list-group-flush">
                       <li className="list-group-item">
                         <ion-icon name="people-outline"></ion-icon>
-                        <span class="card-item-text"> 4 People</span>
+                        <span className="card-item-text"> 4 People</span>
                       </li>
                       <li className="list-group-item">
                         <ion-icon name="flash-outline"></ion-icon>
-                        <span class="card-item-text"> {KelimeIslemleri.duzeltilmisKelime(car.carBodyType)}</span>
+                        <span className="card-item-text"> {KelimeIslemleri.duzeltilmisKelime(car.carBodyType)}</span>
                       </li>
                       <li className="list-group-item">
                         <ion-icon name="speedometer-outline"></ion-icon>
-                        <span class="card-item-text"> {car.kilometer}Km / {KelimeIslemleri.duzeltilmisKelime(car.fuelType)}</span>
+                        <span className="card-item-text"> {car.kilometer}Km / {KelimeIslemleri.duzeltilmisKelime(car.fuelType)}</span>
                       </li>
-                      <li class="list-group-item">
-                        <ion-icon name="hardware-chip-outline"></ion-icon>
-                        <span class="card-item-text"> Automatic</span>
+                      <li className="list-group-item">
+                        <ion-icon className="hardware-chip-outline"></ion-icon>
+                        <span className="card-item-text"> Automatic</span>
                       </li>
                     </ul>
                   </div>
                 </div>
                 <div className="row mt-3">
                   <div className="col-6">
-                    <p class="card-price">
+                    <p className="card-price">
                       <strong>{car.dailyPrice}tl</strong> / Aylık
                     </p>
                   </div>

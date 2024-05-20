@@ -33,6 +33,7 @@ import Rentals from "./components/rent/Rentals";
 import ListUser from "./components/car/user/ListUser";
 import UpdateUser from "./components/car/user/UpdateUser";
 
+
 function App() {
   return (
     <>
@@ -41,36 +42,30 @@ function App() {
         {/* Buraya scroll top component eklenecek. */}
         <Header />
         <Routes>
-          <Route path={"/admin"} element={<AdminBase><AdminLayout /></AdminBase>}>
+          <Route path="/" element={<Home />} />
+          <Route path="/car-detail" element={<CarDetail />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="*" element={<PageNotFound404 />} />
+
+          <Route path="/admin/*" element={<AdminBase><AdminLayout /></AdminBase>} >
             <Route index element={<Admin />} />
-            <Route path={"cars"} element={<ListCar />} />
-            <Route path={"brands"} element={<ListBrand />} />
-            <Route path={"colors"} element={<ListColor />} />
-            <Route path={"rentals"} element={<Rentals />} />
-            <Route path={"users"} element={<ListUser />} />
-
-
-            <Route path={"cars/add-car"} element={<AddCar />} />
-            <Route path={"brands/add-brand"} element={<AddBrand />} />
-            <Route path={"colors/add-color"} element={<AddColor />} />
-
-            <Route path={"brands/update/:brandId"} element={<UpdateBrand />}/>
-            <Route path={"colors/update/:colorId"} element={<UpdateColor />}/>
-            <Route path={"cars/update/:carId"} element={<UpdateCar />} />
-            <Route path={"users/update/:userId"} element={<UpdateUser />} />
+            <Route path="cars" element={<ListCar />} />
+            <Route path="brands" element={<ListBrand />} />
+            <Route path="colors" element={<ListColor />} />
+            <Route path="rentals" element={<Rentals />} />
+            <Route path="users" element={<ListUser />} />
+            <Route path="cars/add-car" element={<AddCar />} />
+            <Route path="brands/add-brand" element={<AddBrand />} />
+            <Route path="colors/add-color" element={<AddColor />} />
+            <Route path="brands/update/:brandId" element={<UpdateBrand />} />
+            <Route path="colors/update/:colorId" element={<UpdateColor />} />
+            <Route path="cars/update/:carId" element={<UpdateCar />} />
+            <Route path="users/update/:userId" element={<UpdateUser />} />
           </Route>
-
-          <Route path={Urls.HOME} element={<Home />} />
-          <Route path={"car-detail"} element={<CarDetail />} />
-
-
-          <Route path={"/about"} element={<About />} />
-          
-          <Route path={"/login"} element={<Login />} />
-          <Route path={"/register"} element={<Register />} />
-          <Route path={"/profile"} element={<Profile />} />
-          <Route path={"/logout"} element={<Logout />} />
-          <Route path={"*"} element={<PageNotFound404 />} />
         </Routes>
         <Footer />
       </Router>

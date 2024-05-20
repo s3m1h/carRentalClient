@@ -106,3 +106,43 @@
   font-size: 1.1em;
   color: #fff;
 }
+
+.admin-layout {
+  padding-top: 2rem;
+}
+
+.admin-layout .content {
+  transition: all 0.3s ease;
+}
+
+.admin-layout .content:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+.content-card {
+  border: none;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+.content-card:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+
+.redirect-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.redirect-message p {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}

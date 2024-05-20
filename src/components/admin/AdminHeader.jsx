@@ -3,19 +3,20 @@ import { Button, Container, Nav, Navbar} from "react-bootstrap";
 import {  FaCar, FaClipboardList, FaGlobe, FaHome, FaPaintBrush, FaSignOutAlt, FaTags, FaUser  } from "react-icons/fa";
 import { AuthContext, useAuth } from "../auth/AuthProvider";
 import { useContext } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const AdminHeader = () => {
   const { user } = useAuth();
   const auth = useContext(AuthContext)
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-		auth.handleLogout()
-    setTimeout(()=>{
-      navigate("/");
-    },3000);
-    
-	}
+// Header sayfası logout butonu
+const handleLogout = () => {
+  auth.handleLogout();
+  setTimeout(() => {
+    navigate("/", { replace: true });
+  }, 1000);
+};
+
   return (
     <>
        <Navbar bg="dark" variant="dark" expand="lg" className="mb-4">
