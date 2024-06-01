@@ -1,60 +1,101 @@
-import React from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+
+import { getAllCars } from '~/services/CarService';
+import { getAllBrands } from '~/services/BrandService';
 
 const CarSearch = () => {
-  return (
-    <div>
-      <Container className="shadow mt-n5 my-5 py-5">
-        <Form>
-          <Row className="justify-content-center">
-            <Col>
-              <Form.Group>
-                <Form.Label>Teslim alınan şehir</Form.Label>
-                <Form.Select aria-label="Default select example">
-                  <option>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </Form.Select>
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group>
-                <Form.Label>Teslim edilen şehir</Form.Label>
-                <Form.Select aria-label="Default select example">
-                  <option>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </Form.Select>
-              </Form.Group>
-            </Col>
+  const [brands, setBrands] = useState([]);
+  const [cars, setCars] = useState([]);
+  const [selectedBrand, setSelectedBrand] = useState('');
+  const [selectedModel, setSelectedModel] = useState('');
+  const [filteredModels, setFilteredModels] = useState([]);
+  const [carResults, setCarResults] = useState([]);
 
-            <Col>
-              <Form.Group>
-                <Form.Label>Check in Date</Form.Label>
-                <Form.Control type="date"></Form.Control>
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group>
-                <Form.Label>Check out Date</Form.Label>
-                <Form.Control type="date"></Form.Control>
-              </Form.Group>
-            </Col>
-            <Col>
-              <Button
-                variant="primary"
-                size="lg"
-                className="search-btn w-100 mt-4"
-              >
-                Search Now
-              </Button>
-            </Col>
-          </Row>
-        </Form>
-      </Container>
-    </div>
+  const navigate = useNavigate();
+
+  // API'den verileri çekme
+  useEffect(() => {
+    const loadData = async () => {
+      const carsData = await getAllCars();
+      const brandsData = await getAllBrands();
+      setCars(carsData);
+      setBrands(brandsData);
+    };
+    loadData();
+  }, []);
+
+  // Marka seçildiğinde modelleri filtreleme
+  useEffect(() => {
+    if (selectedBrand) {
+      const filtered = cars.filter(car => car.brandName === selectedBrand);
+      const uniqueModels = [...new Set(filtered.map(car => car.carName))];
+      setFilteredModels(uniqueModels);
+      setSelectedModel(''); // Yeni marka seçildiğinde modeli sıfırlayın
+    } else {
+      setFilteredModels([]);
+      setSelectedModel(''); // Marka seçilmediğinde modeli sıfırlayın
+    }
+  }, [selectedBrand, cars]);
+
+  // Marka ve model seçildiğinde sonuçları güncelleme
+  useEffect(() => {
+    if (selectedBrand && selectedModel) {
+      const results = cars.filter(car => car.brandName === selectedBrand && car.carName === selectedModel);
+      setCarResults(results);
+    } else {
+      setCarResults([]);
+    }
+  }, [selectedBrand, selectedModel, cars]);
+
+  const handleSearch = () => {
+    if (selectedBrand && selectedModel) {
+      navigate(`/car-detail/${selectedBrand}/${selectedModel}`);
+    }
+  };
+  
+
+  return (
+    <Container className="py-5">
+      <Row>
+        <Col>
+          <h1 className="fs-2 mb-2">Search Your Best Cars</h1>
+          <p className="fs-5 mb-5">Find the perfect car for your needs.</p>
+          <Form>
+            <Row>
+              <Col xs={12} md={4} className="mb-3">
+                <Form.Select size="lg" value={selectedBrand} onChange={(e) => setSelectedBrand(e.target.value)}>
+                  <option value="">Choose a Brand</option>
+                  {brands.length > 0 && brands.map(brand => (
+                    <option key={brand.id} value={brand.brandName}>
+                      {brand.brandName}
+                    </option>
+                  ))}
+                </Form.Select>
+              </Col>
+              <Col xs={12} md={4} className="mb-3">
+                <Form.Select size="lg" value={selectedModel} onChange={(e) => setSelectedModel(e.target.value)} disabled={!selectedBrand}>
+                  <option value="">{selectedBrand ? "Choose a Model" : "---"}</option>
+                  {filteredModels.map((model, index) => (
+                    <option key={index} value={model}>
+                      {model}
+                    </option>
+                  ))}
+                </Form.Select>
+              </Col>
+              <Col xs={12} md={4} className="mb-3">
+                <div className="d-grid">
+                  <Button variant="primary" size="lg" className="w-100" disabled={!selectedModel} onClick={handleSearch}>
+                    Search Now
+                  </Button>
+                </div>
+              </Col>
+            </Row>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

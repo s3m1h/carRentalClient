@@ -32,6 +32,10 @@ import About from "./components/About";
 import Rentals from "./components/rent/Rentals";
 import ListUser from "./components/car/user/ListUser";
 import UpdateUser from "./components/car/user/UpdateUser";
+import CarResults from "./components/CarResults";
+import CarSearch from "./components/common/CarSearch";
+import ListCity from "./components/car/city/ListCity";
+import AddCity from "./components/car/city/AddCity";
 
 
 function App() {
@@ -50,17 +54,22 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="*" element={<PageNotFound404 />} />
+          <Route path="/car-detail/:brand/:model" element={<CarDetail />} />
+          <Route path="/results" element={<CarResults />} /> {/* CarResults rotasını ekleyin */}
+
 
           <Route path="/admin/*" element={<AdminBase><AdminLayout /></AdminBase>} >
             <Route index element={<Admin />} />
             <Route path="cars" element={<ListCar />} />
             <Route path="brands" element={<ListBrand />} />
             <Route path="colors" element={<ListColor />} />
+            <Route path="cities" element={<ListCity />} />
             <Route path="rentals" element={<Rentals />} />
             <Route path="users" element={<ListUser />} />
             <Route path="cars/add-car" element={<AddCar />} />
             <Route path="brands/add-brand" element={<AddBrand />} />
             <Route path="colors/add-color" element={<AddColor />} />
+            <Route path="cities/add-city" element={<AddCity />} />
             <Route path="brands/update/:brandId" element={<UpdateBrand />} />
             <Route path="colors/update/:colorId" element={<UpdateColor />} />
             <Route path="cars/update/:carId" element={<UpdateCar />} />

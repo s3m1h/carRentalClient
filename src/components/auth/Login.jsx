@@ -4,6 +4,19 @@ import { loginUser } from "~/services/AuthService";
 import { useAuth } from "./AuthProvider";
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSetEmail = () => {
+    setEmail('smhacar@gmail.com');
+  };
+
+  const handleSetPassword = () => {
+    setPassword('admin12345');
+  };
+
+
+
   const [errorMessage, setErrorMessage] = useState("");
   const [login, setLogin] = useState({
     email: "",

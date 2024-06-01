@@ -1,6 +1,6 @@
 
 import { Button, Container, Nav, Navbar} from "react-bootstrap";
-import {  FaCar, FaClipboardList, FaGlobe, FaHome, FaPaintBrush, FaSignOutAlt, FaTags, FaUser  } from "react-icons/fa";
+import {  FaCar, FaCity, FaClipboardList, FaGlobe, FaHome, FaPaintBrush, FaSignOutAlt, FaTags, FaUser  } from "react-icons/fa";
 import { AuthContext, useAuth } from "../auth/AuthProvider";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
@@ -31,6 +31,7 @@ const handleLogout = () => {
             <Nav.Link href="/admin/cars" className="text-light"><FaCar /> Cars</Nav.Link>
             <Nav.Link href="/admin/brands" className="text-light"><FaTags /> Brands</Nav.Link>
             <Nav.Link href="/admin/colors" className="text-light"><FaPaintBrush /> Colors</Nav.Link>
+            <Nav.Link href="/admin/cities" className="text-light"><FaCity /> Cities</Nav.Link>
             <Nav.Link href="/admin/users" className="text-light"><FaUser /> Users</Nav.Link>
           </Nav>
           <Nav className="ms-auto">
