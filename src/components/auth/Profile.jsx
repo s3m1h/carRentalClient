@@ -31,11 +31,11 @@ const Profile = () => {
 
 	const userId = localStorage.getItem("userId")
 	const token = localStorage.getItem("token")
-
 	useEffect(() => {
 		const fetchUser = async () => {
 			try {
 				const userData = await getUser(userId, token)
+				
 				setUser(userData)
 			} catch (error) {
 				console.error(error)
@@ -132,7 +132,7 @@ const Profile = () => {
 												<label className="col-md-2 col-form-label fw-bold">Roles:</label>
 												<div className="col-md-10">
 													<ul className="list-unstyled">
-														{user.roles.map((role) => (
+														{user.roles?.map((role) => (
 															<li key={role.id} className="card-text">
 																{role.name}
 															</li>

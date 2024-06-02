@@ -62,7 +62,7 @@ export async function getUser(userId, token) {
 export async function getRentalsByUserId(userId, token) {
 	try {
 		const response = await api.get(`/api/rentals/user/${userId}`, {
-			headers: getHeaderAuth()
+			headers: getHeaderWithAppJson()
 		})
 		return response.data
 	} catch (error) {
