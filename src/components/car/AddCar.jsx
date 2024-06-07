@@ -11,9 +11,10 @@ const AddCar = () => {
     modelYear: 0,
     dailyPrice: 0,
     description: "",
-    kilometer: 0,
     carBodyType: "",
     fuelType: "",
+    transmissionType:"",
+    kilometer:"",
     colorId: 0,
     brandId: 0,
   });
@@ -92,9 +93,10 @@ const AddCar = () => {
           modelYear: 0,
           dailyPrice: 100,
           description: "",
-          kilometer: 0,
           carBodyType: "",
           fuelType: "",
+          transmissionType:"",
+          kilometer:"",
           colorId: 0,
           brandId: 0,
         });
@@ -206,6 +208,21 @@ const AddCar = () => {
                   <option value="Dizel">Dizel</option>
                   <option value="Elektrik">Elektrik</option>
                   <option value="LPG">LPG</option>
+                </select>
+              </div>
+              <div className="mb-3">
+                <label htmlFor="transmissionType" className="form-label">
+                  Vites tipi
+                </label>
+                <select
+                  name="transmissionType"
+                  className="form-select"
+                  aria-label="Default select example"
+                  onChange={handleCarInputChange}
+                >
+                  <option>Vites tipi seçiniz...</option>
+                  <option value="Manual">Manual</option>
+                  <option value="Automatic">Automatic</option>
                 </select>
               </div>
               <div className="mb-3">

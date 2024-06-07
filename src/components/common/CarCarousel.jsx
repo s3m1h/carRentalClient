@@ -49,10 +49,7 @@ const CarCarousel = () => {
                 </div>
                 <div className="mt-auto">
                   <ul className="list-group list-group-flush mb-3">
-                    <li className="list-group-item">
-                      <ion-icon name="people-outline"></ion-icon>
-                      <span className="ms-2">4 People</span>
-                    </li>
+
                     <li className="list-group-item">
                       <ion-icon name="flash-outline"></ion-icon>
                       <span className="ms-2">{KelimeIslemleri.duzeltilmisKelime(car.carBodyType)}</span>
@@ -63,7 +60,7 @@ const CarCarousel = () => {
                     </li>
                     <li className="list-group-item">
                       <ion-icon name="hardware-chip-outline"></ion-icon>
-                      <span className="ms-2">Automatic</span>
+                      <span className="ms-2">{KelimeIslemleri.duzeltilmisKelime(car.transmissionType)}</span>
                     </li>
                   </ul>
                   <div className="d-flex justify-content-between align-items-center">

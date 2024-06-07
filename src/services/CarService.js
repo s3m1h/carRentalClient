@@ -1,28 +1,39 @@
-import { api, getHeaderWithAppJson, getHeaderWithMultiFormData } from "./AxiosServiceBase";
+import {
+  api,
+  getHeaderWithAppJson,
+  getHeaderWithMultiFormData,
+} from "./AxiosServiceBase";
 
-
-export async function addCar(carData,photo){
-    const formData = new FormData();
-    formData.append("carRequest", new Blob([JSON.stringify(carData)],{type:"application/json"}));
-    formData.append("files", photo);
-    const response = await api.post("/api/cars", formData,{headers:getHeaderWithMultiFormData()} );
-      if (response.status === 201) {
-        return true;
-      } else {
-        return false;
-      }
+export async function addCar(carData, photo) {
+  const formData = new FormData();
+  formData.append(
+    "carRequest",
+    new Blob([JSON.stringify(carData)], { type: "application/json" })
+  );
+  formData.append("files", photo);
+  const response = await api.post("/api/cars", formData, {
+    headers: getHeaderWithMultiFormData(),
+  });
+  if (response.status === 201) {
+    return true;
+  } else {
+    return false;
+  }
 }
-export async function getAllCars(){
-  try{
+export async function getAllCars() {
+  try {
     const result = await api.get("/api/cars");
     return result.data.data;
-  }catch(error){
+  } catch (error) {
     throw new Error("Veri getirme işlemi başarısız oldu.. ");
   }
 }
-export async function updateCar(carId,carData,photo){
+export async function updateCar(carId, carData, photo) {
   const formData = new FormData();
-  formData.append("carRequest", new Blob([JSON.stringify(carData)],{type:"application/json"}));
+  formData.append(
+    "carRequest",
+    new Blob([JSON.stringify(carData)], { type: "application/json" })
+  );
   formData.append("files", photo);
   const response = await api.put(`/api/cars/${carId}`, formData, {
     headers: getHeaderWithMultiFormData(),
@@ -60,24 +71,29 @@ export async function carSearchCriteria(criteria) {
 
 export const getCarDetails = async (brand, model) => {
   try {
-    const response = await api.get(`/api/cars/${brand}/${model}`,{
+    const response = await api.get(`/api/cars/${brand}/${model}`, {
       headers: getHeaderWithAppJson(),
     });
     return response.data.data;
   } catch (error) {
-    console.error('Error fetching car details:', error);
+    console.error("Error fetching car details:", error);
     return null;
   }
 };
 
 export const rentCar = async (rentalInfo) => {
   try {
-    const response = await api.post('/api/rentals', rentalInfo, {
+    const response = await api.post("/api/rentals", JSON.stringify(rentalInfo), {
       headers: getHeaderWithAppJson(),
     });
-    return response.data.data;
+
+    if (response.status === 201) {
+      return { success: true };
+    } else {
+      return { success: false, message: response.data.message };
+    }
   } catch (error) {
-    console.error('Error renting car:', error);
+    console.error("Error renting car:", error);
     return { success: false, message: error.message };
   }
 };

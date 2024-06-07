@@ -11,9 +11,9 @@ const UpdateCar = () => {
     modelYear: 0,
     dailyPrice: 0,
     description: "",
-    kilometer: 0,
     carBodyType: "",
     fuelType: "",
+    transmissionType:"",
     colorId: "",
     brandId: "",
     photo: "",
@@ -204,6 +204,22 @@ const UpdateCar = () => {
                 </select>
               </div>
               <div className="mb-3">
+                <label htmlFor="transmissionType" className="form-label">
+                  Vites tipi
+                </label>
+                <select
+                  name="transmissionType"
+                  className="form-select"
+                  aria-label="Default select example"
+                  onChange={handleCarInputChange}
+                >
+                  <option>Vites tipi seçiniz...</option>
+                  <option value="Manual">Manual</option>
+                  <option value="Automatic">Otomatik</option>
+
+                </select>
+              </div>
+              <div className="mb-3">
                 <label htmlFor="carName" className="form-label">
                   Model ismi
                 </label>
@@ -246,20 +262,6 @@ const UpdateCar = () => {
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="kilometer" className="form-label">
-                  Kilometre
-                </label>
-                <input
-                  required
-                  type="number"
-                  className="form-control"
-                  id="kilometer"
-                  name="kilometer"
-                  value={car.kilometer}
-                  onChange={handleCarInputChange}
-                />
-              </div>
-              <div className="mb-3">
                 <label htmlFor="description" className="form-label">
                   Bilgi
                 </label>
@@ -290,7 +292,7 @@ const UpdateCar = () => {
                 />
                 {imagePreview && (
                   <img
-                    src={imagePreview}
+                    src={`data:image/jpeg;base64,${imagePreview}`}
                     alt="Görüntülenen araba resmi."
                     style={{ maxWidth: "400px", maxHeight: "400px" }}
                     className="mb-3"

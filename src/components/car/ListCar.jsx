@@ -14,6 +14,7 @@ const ListCar = () => {
       modelYear:"",
       carBodyType:"",
       fuelType:"",
+      transmissionType:"",
       dailyPrice:"",
       description:"",
       kilometer:"",
@@ -103,10 +104,11 @@ const ListCar = () => {
                   <th>Marka </th>
                   <th>Renk </th>
                   <th>Model Yılı </th>
-                  <th>Kilometre </th>
                   <th>Kasa tipi</th>
                   <th>Yakıt tipi </th>
+                  <th>Vites tipi </th>
                   <th>Fiyat </th>
+                  <th>Km </th>
                   <th>Bilgi </th>
                   <th>Kiralanmıs mı</th>
                   <th>Ayarlar</th>
@@ -122,10 +124,11 @@ const ListCar = () => {
                     <td>{car.brandName}</td>
                     <td>{car.colorName}</td>
                     <td>{car.modelYear}</td>
-                    <td>{car.kilometer}</td>
                     <td>{car.carBodyType}</td>
                     <td>{car.fuelType}</td>
+                    <td>{car.transmissionType}</td>
                     <td>{car.dailyPrice}</td>
+                    <td>{car.kilometer}</td>
                     <td>{car.description}</td>
                     <td>{car.isRented ? "true": "false"}</td>
                     <td className="gap-2">

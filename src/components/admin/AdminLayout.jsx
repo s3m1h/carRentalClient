@@ -7,7 +7,7 @@ const AdminLayout = () => {
     return (
         <Container fluid className="admin-layout bg-dark text-dark min-vh-100">
       <Row className="justify-content-md-center">
-        <Col xs={12} md={10}>
+        <Col xs={11} md={13}>
           <AdminHeader />
           <Card className="content-card mt-4 mb-4 shadow-sm">
             <Card.Body>

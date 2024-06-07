@@ -63,7 +63,7 @@ const RentalsTable = ({ rentInfo, handleRentalCancellation }) => {
 							<td>{rental.numOfAdults}</td>
 							<td>{rental.numOfChildren}</td>
 							<td>{rental.totalNumOfGuests}</td>
-							<td>{rental.bookingConfirmationCode}</td>
+							<td>{rental.confirmationCode}</td>
 							<td>
 								<button
 									className="btn btn-danger btn-sm"

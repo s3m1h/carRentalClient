@@ -18,7 +18,7 @@ export async function getAllRentals() {
 		const result = await api.get("/api/rentals", {
 			headers: getHeaderWithAppJson()
 		})
-		return result.data
+		return result.data.data
 	} catch (error) {
 		throw new Error(`Error fetching rentals : ${error.message}`)
 	}
